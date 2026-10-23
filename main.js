@@ -216,10 +216,7 @@ app.get("/products/totalQuantitySold", (req, res, next) => {
   });
 });
 app.get("/products/HighestStock", (req, res, next) => {
-  const query = `SELECT ProductID, ProductName, Price, StockQuantity
-FROM products
-ORDER BY StockQuantity DESC
-LIMIT 1`;
+  const query = `select * from products ORDER BY StockQuantity DESC LIMIT 1`;
   db.execute(query, (error, data, fields) => {
     if (error) {
       return res.status(500).json({ message: "Internal Server Error", error });
